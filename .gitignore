@@ -1,0 +1,35 @@
+server/node_modules
+server/.env
+**/__pycache__/
+**/*.pyc
+app/node_modules
+
+# Expo
+app/.expo/
+app/dist/
+app/web-build/
+app/expo-env.d.ts
+
+# Metro
+app/.metro-health-check*
+
+# Generated native folders
+app/ios
+app/android
+
+# Native signing / certs
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Misc
+*.orig.*
+.DS_Store
+.env*.local
+*.tsbuildinfo
+npm-debug.*
+yarn-debug.*
+yarn-error.*
