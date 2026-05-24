@@ -4,13 +4,15 @@ Real-time meeting transcription app built with Expo (React Native) and a local P
 
 ## How it works
 
-The app records audio and splits it into chunks based on silence detection. Each chunk is sent to the local server, transcribed with OpenAI's Whisper model, and displayed as a timestamped bubble. Transcription continues in the background even while recording.
+The app records audio continuously and splits it into chunks whenever silence is detected. Each chunk is sent over HTTP to the local FastAPI server, where faster-whisper transcribes it. Results come back as timestamped text bubbles and are appended to the transcript in real time. Multiple chunks can be in flight simultaneously so transcription keeps up with speech without blocking the recording.
 
 ## Features
 
 - Real-time speech-to-text with silence-based chunking
 - Turkish and English language support
+- Timestamped transcript bubbles for easy review
 - Export transcript as `.txt` or full meeting audio as `.m4a`
+- Audio chunks are joined server-side with PyAV — no ffmpeg install needed
 - Fully local — no API keys, no internet required
 
 ## Stack
@@ -34,8 +36,11 @@ python main.py
 **App** (set server URL to your machine's local IP in the app settings)
 ```bash
 cd app
+npm install
 npx expo run:android
 ```
+
+> The server is best run inside WSL or a Linux environment. The app connects to it over your local network, so make sure both are on the same Wi-Fi or the WSL port is forwarded to your host IP.
 
 ## Configuration
 
